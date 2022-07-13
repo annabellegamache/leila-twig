@@ -1,0 +1,14 @@
+### Voir fichier  hosts et httpd-vhosts....
+
+### Récriture d'Urls avec Mod_Rewrite
+# ex: plat/tout --> index.php?route/plat/tout/
+
+RewriteEngine On 
+                            # exclude url qui ne commence pas par ressources
+RewriteCond %{REQUEST_URI} !^/ressources/ 
+
+# si pas dossier et fichier existe
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?route=$1 [QSA]
